@@ -8,13 +8,13 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"marilari88/neotest-vitest",
 			"nvim-neotest/neotest-plenary",
-			{ "alfaix/neotest-gtest", opts = {} },
+			"alfaix/neotest-gtest",
 		},
 		config = function()
 			local neotest = require("neotest")
 			neotest.setup({
 				adapters = {
-					require("neotest-gtest"),
+					require("neotest-gtest").setup({}),
 					require("neotest-vitest"),
 					require("neotest-plenary").setup({
 						-- this is my standard location for minimal vim rc
@@ -24,8 +24,17 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "<leader>y", function()
+			vim.keymap.set("n", "<leader>yr", function()
 				neotest.run.run()
+			end)
+			vim.keymap.set("n", "<leader>ys", function()
+				neotest.run.stop()
+			end)
+			vim.keymap.set("n", "<leader>yo", function()
+				neotest.output.open()
+			end)
+			vim.keymap.set("n", "<leader>yt", function()
+				neotest.summary.toggle()
 			end)
 		end,
 	},

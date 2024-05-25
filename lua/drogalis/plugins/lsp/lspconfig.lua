@@ -27,7 +27,7 @@ return {
 						offsetEncoding = { "utf-16" },
 					},
 					cmd = {
-						"clangd",
+						"/usr/bin/clangd",
 						"--background-index",
 						"--clang-tidy",
 						"--header-insertion=iwyu",
@@ -36,6 +36,7 @@ return {
 						"--fallback-style=llvm",
 					},
 					init_options = {
+					        compilationDatabasePath = './build',
 						usePlaceholders = true,
 						completeUnimported = true,
 						clangdFileStatus = true,
@@ -81,6 +82,34 @@ return {
 	config = function()
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
+		
+		local util = require 'lspconfig.util'
+
+-- https://clangd.llvm.org/extensions.html#switch-between-sourceheader
+local function switch_source_header()
+  local bufnr = 0
+  bufnr = util.validate_bufnr(bufnr)
+  local clangd_client = util.get_active_client_by_name(bufnr, 'clangd')
+  local params = { uri = vim.uri_from_bufnr(bufnr) }
+  if clangd_client then
+    clangd_client.request('textDocument/switchSourceHeader', params, function(err, result)
+      if err then
+        error(tostring(err))
+      end
+      if not result then
+        print 'Corresponding file cannot be determined'
+        return
+      end
+      vim.api.nvim_command('edit ' .. vim.uri_to_fname(result))
+    end, bufnr)
+  else
+    print 'method textDocument/switchSourceHeader is not supported by any servers active on the current buffer'
+  end
+end
+		
+lspconfig.bashls.setup{}
+lspconfig.cmake.setup({cmd = { "neocmakelsp" }, filetypes = {"cmake", "CMakeLists.txt"}, init_options = { buildDirectory = "build" }, single_file_support = true})
+lspconfig.pyright.setup{}
 
 		-- import mason_lspconfig plugin
 		local mason_lspconfig = require("mason-lspconfig")
@@ -100,6 +129,9 @@ return {
 				-- set keybinds
 				opts.desc = "Show LSP references"
 				keymap.set("n", "<leader>lR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+				
+				opts.desc = "Switch to Header"
+				keymap.set("n", "<leader>ls", switch_source_header, opts) -- show definition, references
 
 				opts.desc = "Go to declaration"
 				keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, opts) -- go to declaration

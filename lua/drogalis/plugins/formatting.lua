@@ -7,6 +7,7 @@ return {
 		conform.setup({
 			formatters_by_ft = {
 				cpp = { "clang-format" },
+				cmake = { "cmakelang" },
 				css = { "prettier" },
 				html = { "prettier" },
 				json = { "prettier" },

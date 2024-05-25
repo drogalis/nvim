@@ -39,6 +39,7 @@ local treesitter_setup = function()
 			"rust",
 			"rst",
 			"scss",
+			"sql",
 			"ssh_config",
 			"strace",
 			"toml",
@@ -62,37 +63,47 @@ local treesitter_setup = function()
 			select = {
 				enable = true,
 				keymaps = {
-					["ac"] = "@comment.outer",
-					["ic"] = "@comment.outer",
-					["ao"] = "@class.outer",
-					["io"] = "@class.inner",
+					["ai"] = "@conditional.outer",
+					["ii"] = "@conditional.outer",
+					["ac"] = "@class.outer",
+					["ic"] = "@class.inner",
 					["af"] = "@function.outer",
 					["if"] = "@function.inner",
+					["al"] = "@loop.outer",
+					["il"] = "@loop.inner",
 				},
 			},
 			move = {
 				enable = true,
 				set_jumps = true,
 				goto_next_start = {
-					["nc"] = { query = "@class.outer", desc = "next class" },
-					["nf"] = {
+					["<leader>nc"] = { query = "@class.outer", desc = "next class" },
+					["<leader>nf"] = {
 						query = "@function.outer",
 						desc = "next function",
 					},
-					["np"] = {
-						query = "@parameter.outer",
-						desc = "next parameter",
+					["<leader>ni"] = {
+						query = "@conditional.outer",
+						desc = "next conditional",
+					},
+					["<leader>nl"] = {
+						query = "@loop.outer",
+						desc = "next loop",
 					},
 				},
 				goto_previous_start = {
-					["pc"] = { query = "@class.outer", desc = "prev class" },
-					["pf"] = {
+					["<leader>pc"] = { query = "@class.outer", desc = "prev class" },
+					["<leader>pf"] = {
 						query = "@function.outer",
 						desc = "prev function",
 					},
-					["pp"] = {
-						query = "@parameter.outer",
-						desc = "prev parameter",
+					["<leader>pi"] = {
+						query = "@conditional.outer",
+						desc = "prev loop",
+					},
+					["<leader>pl"] = {
+						query = "@loop.outer",
+						desc = "prev loop",
 					},
 				},
 			},

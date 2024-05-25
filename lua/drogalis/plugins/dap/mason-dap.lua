@@ -22,6 +22,13 @@ return {
 				detached = false,
 			},
 		}
+		
+		dap.adapters.codelldb = {
+			id = "codelldb",
+			type = "executable",
+			command = "gdb",
+			args = { "--quiet", "--interpreter=dap" },
+		}
 
 		dap.adapters.gdb = {
 			id = "gdb",
