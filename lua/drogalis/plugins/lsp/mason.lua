@@ -33,8 +33,7 @@ return {
 				"clangd",
 				"lua_ls",
 				"pyright",
-				"bashls",
-				"neocmakelsp"
+				"bashls"
 			},
 		})
 
@@ -51,7 +50,8 @@ return {
 				"cpptools",
 				"codelldb",
 				"cmakelint",
-				"cmakelang"
+				"cmakelang",
+				"neocmakelsp"
 			},
 		})
 	end,
