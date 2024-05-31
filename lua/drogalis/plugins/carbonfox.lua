@@ -3,6 +3,7 @@ return {
 	lazy = false,
 	priority = 1000,
 	config = function()
+        require('nightfox').setup({options = {transparent = true}})
 		vim.cmd("syntax enable")
 		vim.cmd.colorscheme("carbonfox")
 	end,

@@ -35,9 +35,9 @@ function M.config()
 				vim.keymap.set(mode, l, r, opts)
 			end
 
-			keymap("n", "]c", function()
+			keymap("n", "<leader>i]", function()
 				if vim.wo.diff then
-					return "]c"
+					return "<leader>i]"
 				end
 				vim.schedule(function()
 					gs.next_hunk()
@@ -45,9 +45,9 @@ function M.config()
 				return "<Ignore>"
 			end, { expr = true, desc = "next hunk" })
 
-			keymap("n", "[c", function()
+			keymap("n", "<leader>i[", function()
 				if vim.wo.diff then
-					return "[c"
+					return "<leader>i["
 				end
 				vim.schedule(function()
 					gs.prev_hunk()
