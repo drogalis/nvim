@@ -49,7 +49,8 @@ opt.undofile = true
 opt.hlsearch = false
 opt.incsearch = true
 
-opt.scrolloff = 8
+opt.scrolloff = 20
+opt.sidescrolloff = 30
 opt.isfname:append("@-@")
 
 opt.updatetime = 50
