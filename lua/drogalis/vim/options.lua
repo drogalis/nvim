@@ -4,9 +4,9 @@ local opt = vim.opt
 
 opt.relativenumber = true
 opt.number = true
-opt.numberwidth = 8
+opt.numberwidth = 6
 
-vim.opt.statuscolumn = "%=%l %s  "
+vim.opt.statuscolumn = "%=%{v:relnum?v:relnum:v:lnum} %s %C "
 
 -- tabs & indentation
 opt.tabstop = 4 -- 2 spaces for tabs (prettier default)
