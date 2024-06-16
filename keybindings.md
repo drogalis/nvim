@@ -1,8 +1,3 @@
-# Auto Session
-
-N - <leader>wr - session restore
-N - <leader>ws - session save
-
 # Comment
 
 N - gcc - line comment
@@ -26,6 +21,10 @@ maybe c
 :CEShowTooltip Show information about a specific instruction under cursor. assembly buffer
 :CEGotoLabel Jump to the label definition under cursor. assembly buffer
 
+# Conform
+
+N / V - <leader>mp - format code
+
 # Coverage
 
 N - <leader>vl - load and display coverage
@@ -38,9 +37,12 @@ N - <leader>Df - find buffer
 N - <leader>Dr - rename buffer
 N - <leader>Dq - last query info
 
-# Formatting & Conform
-
-N / V - <leader>mp - format code
+# Flash
+N / V - s - jump to target
+N / V - S - jump to Treesitter object
+N - r - remote to target
+N - R - remote to Treesitter object
+N - <C-s> - toggle flash menu
 
 # GitSigns
 
@@ -161,12 +163,6 @@ N - <leader>com - comment function
 
 N - <leader>b - try linting
 
-# Leap
-
-N - s - leap forward
-N - S - leap backwards
-N - gs - Leap from windows
-
 # Lazy Git
 
 N - <leader>lg - open lazy git
@@ -189,3 +185,16 @@ N - <leader>hp5 - set harpon for file
 
 N - <leader>dt - toggle breakpoint
 N - <leader>dc - dap continue
+
+# Vim Illuminate
+You'll also get <a-n> and <a-p> as keymaps to move between references
+<a-i> as a textobject for the reference illuminated under the cursor.
+
+# Yanky
+vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
+
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
+vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
