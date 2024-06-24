@@ -23,6 +23,10 @@ vim.keymap.set("i", "jk", "<ESC>")
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+keymap.set("n", "<leader>s<left>", [[<cmd>vertical resize +10<cr>]]) -- make the window biger vertically
+keymap.set("n", "<leader>s<right>", [[<cmd>vertical resize -10<cr>]]) -- make the window smaller vertically
+keymap.set("n", "<leader>s<up>", [[<cmd>horizontal resize +5<cr>]]) -- make the window bigger horizontally by pressing shift and =
+keymap.set("n", "<leader>s<down>", [[<cmd>horizontal resize -5<cr>]]) -- make the window smaller horizontally by pressing shift and -
 
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
