@@ -12,31 +12,7 @@ function M.config()
 
 	require("trouble").setup()
 
-	keymap(
-		"n",
-		"<leader>xx",
-		"<cmd>TroubleToggle document_diagnostics<cr>",
-		{ silent = true, desc = "diagnostics for current buffer" }
-	)
-	keymap("n", "<leader>xp", "<cmd>TroubleToggle<cr>", { silent = true, desc = "diagnostics for complete project" })
-	keymap(
-		"n",
-		"<leader>xw",
-		"<cmd>TroubleToggle workspace_diagnostics<cr>",
-		{ silent = true, desc = "diagnostics for workspace" }
-	)
-	keymap(
-		"n",
-		"<leader>xl",
-		"<cmd>TroubleToggle loclist<cr>",
-		{ silent = true, desc = "diagnostics for location list" }
-	)
-	keymap(
-		"n",
-		"<leader>xq",
-		"<cmd>TroubleToggle quickfix<cr>",
-		{ silent = true, desc = "diagnostics for quickfix list" }
-	)
+	keymap("n", "<leader>xx", "<cmd>Trouble<cr>", { silent = true, desc = "diagnostics for current buffer" })
 	keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, desc = "show lsp references" })
 end
 
