@@ -33,6 +33,7 @@ hidden = true
 			vim.keymap.set("n", "<leader>st", builtin.live_grep, {})
 			vim.keymap.set("n", "<leader>so", builtin.oldfiles, {})
 			vim.keymap.set("n", "<leader>sg", builtin.git_files, {})
+			vim.keymap.set("n", "<leader>sb", builtin.buffers, {})
 
 			require("telescope").load_extension("ui-select")
 		end,
