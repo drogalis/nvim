@@ -137,7 +137,7 @@ lspconfig.pyright.setup{}
 				keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, opts) -- go to declaration
 
 				opts.desc = "Show LSP definitions"
-				keymap.set("n", "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+				keymap.set("n", "<leader>ldt", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
 				opts.desc = "Show LSP implementations"
 				keymap.set("n", "<leader>li", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations

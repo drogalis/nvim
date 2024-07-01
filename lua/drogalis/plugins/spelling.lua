@@ -26,17 +26,16 @@ vim.g.spelunker_spell_bad_group = "SpelunkerSpellBad"
 vim.g.spelunker_complex_or_compound_word_group = "SpelunkerComplexOrCompoundWord"
 
 -- Override highlight setting with Error color from the current theme.
-local error_color = vim.fn.synIDattr(vim.fn.hlID("Error"), "fg")
-vim.cmd(string.format("highlight SpelunkerSpellBad cterm=underline gui=undercurl guisp=%s", error_color))
+vim.cmd(string.format("highlight SpelunkerSpellBad cterm=underline gui=undercurl guisp=%s", "#ffffff"))
 vim.cmd(
-  string.format(
-    "highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=undercurl guisp=%s",
-    error_color
-  )
+	string.format(
+		"highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=undercurl guisp=%s",
+		"#ffffff"
+	)
 )
 
 return {
-  {
-    "kamykn/spelunker.vim",
-  },
+	{
+		"kamykn/spelunker.vim",
+	},
 }
