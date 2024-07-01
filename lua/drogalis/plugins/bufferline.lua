@@ -16,6 +16,6 @@ return {
 				},
 			},
 		})
-		vim.keymap.set("n", "<leader>bl", ":BufferLinePick<CR>")
+		vim.keymap.set("n", "<leader>b", ":BufferLinePick<CR>")
 	end,
 }

@@ -32,12 +32,14 @@ N - <leader>vs - code coverage summary
 N - <leader>vt - toggle code coverage
 
 # Dadbod
+
 N - <leader>Dt - toggle UI
 N - <leader>Df - find buffer
 N - <leader>Dr - rename buffer
 N - <leader>Dq - last query info
 
 # Flash
+
 N / V - s - jump to target
 N / V - S - jump to Treesitter object
 N - r - remote to target
@@ -167,30 +169,18 @@ N - <leader>b - try linting
 
 N - <leader>lg - open lazy git
 
-# Harpoon
-
-N - <leader>HP - harpoon menu
-N - <leader>1 - harpoon to file
-N - <leader>2 - harpoon to file
-N - <leader>3 - harpoon to file
-N - <leader>4 - harpoon to file
-N - <leader>5 - harpoon to file
-N - <leader>hp1 - set harpon for file
-N - <leader>hp2 - set harpon for file
-N - <leader>hp3 - set harpon for file
-N - <leader>hp4 - set harpon for file
-N - <leader>hp5 - set harpon for file
-
 # Dap UI
 
 N - <leader>dt - toggle breakpoint
 N - <leader>dc - dap continue
 
 # Vim Illuminate
+
 You'll also get <a-n> and <a-p> as keymaps to move between references
 <a-i> as a textobject for the reference illuminated under the cursor.
 
 # Yanky
+
 vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
 vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
 vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")

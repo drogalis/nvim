@@ -9,8 +9,10 @@ local lazy_cmp_config = function()
 			end,
 		},
 		mapping = {
-			["<C-w>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-			["<C-q>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+			["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+			["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+			["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+			["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
 			["<Tab>"] = cmp.mapping(cmp.mapping.confirm({ select = true }), { "i", "c" }),
 			["<C-e>"] = cmp.mapping({
 				i = cmp.mapping.abort(),
