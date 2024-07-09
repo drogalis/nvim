@@ -39,9 +39,3 @@ end)
 keymap.set({ "n", "v" }, "ZO", function()
 	vim.g.enable_spelunker_vim = 1
 end)
-
-vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
-vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
-
-vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
-vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
