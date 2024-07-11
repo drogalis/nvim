@@ -28,11 +28,6 @@ keymap.set("n", "<leader>s<right>", [[<cmd>vertical resize -10<cr>]]) -- make th
 keymap.set("n", "<leader>s<up>", [[<cmd>horizontal resize +5<cr>]]) -- make the window bigger horizontally by pressing shift and =
 keymap.set("n", "<leader>s<down>", [[<cmd>horizontal resize -5<cr>]]) -- make the window smaller horizontally by pressing shift and -
 
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) -- move current buffer to new tabi
 keymap.set({ "n", "v" }, "Zo", function()
 	vim.g.enable_spelunker_vim = 0
 end)
