@@ -1,5 +1,6 @@
 return {
 	"simrat39/symbols-outline.nvim",
+    enabled = false,
 	config = function()
 		require("symbols-outline").setup({})
 		local map = vim.api.nvim_set_keymap
