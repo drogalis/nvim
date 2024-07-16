@@ -29,10 +29,19 @@ keymap.set("n", "<leader>s<up>", [[<cmd>horizontal resize +5<cr>]]) -- make the 
 keymap.set("n", "<leader>s<down>", [[<cmd>horizontal resize -5<cr>]]) -- make the window smaller horizontally by pressing shift and -
 
 keymap.set({ "n", "v" }, "Zo", function()
-	vim.g.enable_spelunker_vim = 0
+	vim.cmd(string.format("highlight SpelunkerSpellBad cterm=underline gui=undercurl guisp=%s", "#cccccc"))
+	vim.cmd(
+		string.format(
+			"highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=undercurl guisp=%s",
+			"#cccccc"
+		)
+	)
 end)
 keymap.set({ "n", "v" }, "ZO", function()
-	vim.g.enable_spelunker_vim = 1
+	vim.cmd(string.format("highlight SpelunkerSpellBad cterm=NONE gui=NONE guisp=%s", "#cccccc"))
+	vim.cmd(
+		string.format("highlight SpelunkerComplexOrCompoundWord cterm=NONE ctermfg=NONE gui=NONE guisp=%s", "#cccccc")
+	)
 end)
 keymap.set({ "n", "v" }, "lv", function()
 	vim.diagnostic.config({ virtual_text = true })
