@@ -103,7 +103,9 @@ return {
 					vim.api.nvim_command("edit " .. vim.uri_to_fname(result))
 				end, bufnr)
 			else
-				print("method textDocument/switchSourceHeader is not supported by any servers active on the current buffer")
+				print(
+					"method textDocument/switchSourceHeader is not supported by any servers active on the current buffer"
+				)
 			end
 		end
 
@@ -119,6 +121,11 @@ return {
 		-- import mason_lspconfig plugin
 		local mason_lspconfig = require("mason-lspconfig")
 
+		require("lspconfig").clangd.setup({
+			on_attach = function(client, bufnr)
+				navbuddy.attach(client, bufnr)
+			end,
+		})
 		-- import cmp-nvim-lsp plugin
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -173,6 +180,16 @@ return {
 
 				opts.desc = "Restart LSP"
 				keymap.set("n", "<leader>lrs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+				keymap.set("n", "<leader>lh", function()
+					require("clangd_extensions.inlay_hints").setup_autocmd()
+					require("clangd_extensions.inlay_hints").set_inlay_hints()
+				end)
+
+				keymap.set("n", "<leader>lH", function()
+					require("clangd_extensions.inlay_hints").setup_autocmd()
+					require("clangd_extensions.inlay_hints").disable_inlay_hints()
+				end)
 			end,
 		})
 

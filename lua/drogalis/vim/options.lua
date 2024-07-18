@@ -23,6 +23,7 @@ opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
 opt.cursorline = true
+opt.colorcolumn = "110"
 
 opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark

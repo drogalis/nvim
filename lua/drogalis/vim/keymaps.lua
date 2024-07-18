@@ -37,6 +37,7 @@ keymap.set({ "n", "v" }, "Zo", function()
 		)
 	)
 end)
+
 keymap.set({ "n", "v" }, "ZO", function()
 	vim.cmd(string.format("highlight SpelunkerSpellBad cterm=NONE gui=NONE guisp=%s", "#cccccc"))
 	vim.cmd(
