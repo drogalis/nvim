@@ -1,5 +1,5 @@
 -- for spell checking, source: https://github.com/kamykn/spelunker.vim
-vim.g.enable_spelunker_vim = 1
+vim.g.enable_spelunker_vim = 0
 vim.g.enable_spelunker_vim_on_readonly = 1
 vim.g.spelunker_target_min_char_len = 2
 vim.g.spelunker_max_suggest_words = 15
