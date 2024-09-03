@@ -15,7 +15,6 @@ end)
 
 -- Add Helper Keys
 vim.keymap.set("n", ";", ":")
-vim.keymap.set("i", "jk", "<ESC>")
 
 -- keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
