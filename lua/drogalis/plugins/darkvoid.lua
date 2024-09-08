@@ -9,11 +9,11 @@ return {
 				line_nr = "#222222",
 				string = "#7dabd1",
 				visual = "#303030",
-				comment = "#6b6b6b",
-				func = "#84d999", -- 135, 100, 78
+				comment = "#757575",
+				func = "#81d6a2", -- 135, 100, 78
 				kw = "#bfe8f2",
 				identifier = "#e6e6e6",
-				type = "#689ded", -- 188, 100, 78
+				type = "#81d6a2", -- 188, 100, 78
 				search_highlight = "#00bd6d",
 				operator = "#00bd6b",
 				bracket = "#e6e6e6",
