@@ -9,9 +9,9 @@ opt.numberwidth = 6
 vim.opt.statuscolumn = "%=%{v:relnum?v:relnum:v:lnum} %s %C "
 
 -- tabs & indentation
-opt.tabstop = 4 -- 2 spaces for tabs (prettier default)
-opt.softtabstop = 4
-opt.shiftwidth = 4 -- 2 spaces for indent width
+opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
+opt.softtabstop = 2
+opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 opt.smartindent = true
