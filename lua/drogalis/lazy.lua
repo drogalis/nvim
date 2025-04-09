@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "drogalis.plugins" }, { import = "drogalis.plugins.lsp" }, { import = "drogalis.plugins.dap" } }, {
+require("lazy").setup({ { import = "drogalis.plugins" }, { import = "drogalis.plugins.lsp" } }, {
   checker = {
     enabled = true,
     notify = false,
