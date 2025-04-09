@@ -1,10 +1,10 @@
 return {
-	"Aliqyan-21/darkvoid.nvim",
+	"darkvoid-theme/darkvoid.nvim",
 	lazy = false,
 	priority = 1000,
 	config = function()
 		require("darkvoid").setup({
-			transparent = true,
+			transparent = false,
 			colors = {
 				line_nr = "#222222",
 				string = "#7dabd1",
