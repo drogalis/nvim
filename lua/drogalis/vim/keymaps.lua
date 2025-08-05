@@ -19,6 +19,11 @@ vim.keymap.set("n", ";", ":")
 -- keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- window management
+keymap.set("n", "<leader><left>", "<C-w>h")
+keymap.set("n", "<leader><right>", "<C-w>l")
+keymap.set("n", "<leader><up>", "<C-w>k")
+keymap.set("n", "<leader><down>", "<C-w>j")
+
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
