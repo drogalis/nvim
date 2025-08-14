@@ -12,8 +12,7 @@ function M.config()
 
 	require("trouble").setup()
 
-	keymap("n", "<leader>xx", "<cmd>Trouble<cr>", { silent = true, desc = "diagnostics for current buffer" })
-	keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, desc = "show lsp references" })
+	keymap("n", "<leader>x", "<cmd>Trouble<cr>", { silent = true, desc = "diagnostics for current buffer" })
 end
 
 return M

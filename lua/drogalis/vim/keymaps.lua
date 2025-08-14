@@ -14,7 +14,8 @@ keymap.set("n", "|", function()
 end)
 
 -- Add Helper Keys
-vim.keymap.set("n", ";", ":")
+keymap.set("n", ";", ":")
+keymap.set("n", ".", ":w<CR>")
 
 -- keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
@@ -24,7 +25,7 @@ keymap.set("n", "<leader><right>", "<C-w>l")
 keymap.set("n", "<leader><up>", "<C-w>k")
 keymap.set("n", "<leader><down>", "<C-w>j")
 
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
+keymap.set("n", "<leader>q", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 keymap.set("n", "<leader>s<left>", [[<cmd>vertical resize +10<cr>]]) -- make the window biger vertically

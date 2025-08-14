@@ -11,8 +11,9 @@ return {
 			view_options = {
 				show_hidden = true,
 			},
+			watch_for_changes = true,
+			skip_confirm_for_simple_edits = true,
 		})
-		vim.keymap.set("n", "-", "<CMD>Oil<CR>")
-		vim.keymap.set("n", "<leader>-", require("oil").toggle_float)
+		vim.keymap.set("n", "r", "<CMD>Oil<CR>")
 	end,
 }
