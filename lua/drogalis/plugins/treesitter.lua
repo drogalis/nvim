@@ -27,7 +27,6 @@ local treesitter_setup = function()
 			"make",
 			"markdown",
 			"markdown_inline",
-			"meson",
 			"norg",
 			"objdump",
 			"pem",
