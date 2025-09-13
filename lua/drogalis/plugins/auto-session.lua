@@ -8,8 +8,5 @@ return {
 				restore_upcoming_session = true, -- Disabled by default, set to true to enable
 			},
 		})
-		vim.keymap.set("n", "<C-s>", require("auto-session.session-lens").search_session, {
-			noremap = true,
-		})
 	end,
 }

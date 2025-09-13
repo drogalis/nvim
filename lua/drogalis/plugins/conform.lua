@@ -6,17 +6,18 @@ return {
 
 		conform.setup({
 			formatters_by_ft = {
+				c = { "clang-format" },
 				cpp = { "clang-format" },
-				cmake = { "cmakelang" },
+			--	cmake = { "cmakelang" },
 				css = { "prettier" },
 				html = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },
 				markdown = { "prettier" },
-				graphql = { "prettier" },
-				liquid = { "prettier" },
 				lua = { "stylua" },
-				python = { "isort", "black" },
+				python = { "black" },
+     		    sh = { "shfmt" },
+        		tex = { "latexindent" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
