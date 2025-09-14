@@ -8,6 +8,8 @@ return   {
     },
     config = function()
       local nn = require("notebook-navigator")
+      require("drogalis.plugins.jupyter.styling.autocommands").setup()
+      require("drogalis.plugins.jupyter.styling.styling").setup()
 
       -- Basic NotebookNavigator setup
       nn.setup({
