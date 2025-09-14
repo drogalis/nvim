@@ -8,8 +8,6 @@ return   {
     },
     config = function()
       local nn = require("notebook-navigator")
-      require("drogalis.plugins.jupyter.styling.autocommands").setup()
-      require("drogalis.plugins.jupyter.styling.styling").setup()
 
       -- Basic NotebookNavigator setup
       nn.setup({
@@ -42,7 +40,7 @@ return   {
 
       -- Load our autocommands module for FileType detection
       vim.defer_fn(function()
-        local ok, autocommands = pcall(require, "neotex.plugins.text.jupyter.autocommands")
+        local ok, autocommands = pcall(require, "drogalis.plugins.jupyter.styling.autocommands")
         if ok and type(autocommands) == "table" and autocommands.setup then
           autocommands.setup()
         end
@@ -62,7 +60,7 @@ return   {
 
         -- If we have open ipynb files, load and apply styling
         if any_ipynb then
-          local ok, styling = pcall(require, "neotex.plugins.text.jupyter.styling")
+          local ok, styling = pcall(require, "drogalis.plugins.jupyter.styling.styling")
           if ok and type(styling) == "table" and styling.setup then
             styling.setup()
           end
