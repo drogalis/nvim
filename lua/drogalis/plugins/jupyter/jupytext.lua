@@ -1,5 +1,5 @@
 return   {
-    "GCBallesteros/jupytext.nvim",
+    "drogalis/jupytext.nvim",
     version = "*", -- Use latest stable version
     dependencies = {
      -- "GCBallesteros/NotebookNavigator.nvim",
