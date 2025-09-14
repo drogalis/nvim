@@ -1,44 +1,70 @@
-return   {
-    "Vigemus/iron.nvim", -- Use the correct GitHub repository name
-    version = "*",
-    lazy = true,
-    main = "iron.core",
-    -- No keys defined here - all mappings in which-key.lua
-    ft = { "python", "julia", "r", "lua" },
-    config = function()
-      local iron = require("iron.core")
-      local view = require("iron.view")
+return {
+  "Vigemus/iron.nvim",
+  version = "*",
+  ft = { "python", "julia", "r", "lua" },
+  config = function()
+    local iron = require("iron.core")
 
-      -- Use pcall to handle iron.nvim setup safely
-      local success, err = pcall(function()
-        iron.setup({
-          config = {
-            -- Enable scratch REPL for better cell handling
-            scratch_repl = true,
-            -- Configure language-specific REPL commands and behavior
-            repl_definition = {
-              python = {
-                command = { "ipython" },
-                -- Support for Jupyter-style code blocks
-                block_dividers = { "# %%", "#%%" }
-              },
-            },
-            -- REPL window appears as a vertical split on the right
-            repl_open_cmd = "vertical botright split",
-            -- Use escape to exit REPL insert mode
-            close_on_exit = true,
-            -- Disable highlight_last to avoid the nvim__set_hl_ns error
-            highlight_last = false,
-            -- Don't map plug keys to prevent table.insert errors
-            should_map_plug = false,
+    iron.setup({
+      config = {
+        scratch_repl = true,
+        repl_definition = {
+          python = {
+            command = { "ipython", "--no-autoindent" },
+            format = require("iron.fts.common").bracketed_paste_python,
+            block_dividers = { "# %%", "#%%" },
           },
-          -- Keymaps are defined in which-key.lua
-          keymaps = {},
-        })
-      end)
+          lua = {
+            command = { "lua" },
+          },
+        },
+        repl_open_cmd = "vertical botright split",
+        close_on_exit = true,
+        highlight_last = false,
+      },
+      highlight = false,
+    })
 
-      if not success then
-        vim.notify("Error setting up iron.nvim: " .. tostring(err), vim.log.levels.WARN)
-      end
-    end,
-  }
+    -- Additional REPL keymaps
+    vim.keymap.set("n", "<leader>io", function()
+      iron.repl_for(vim.bo.filetype)
+    end, { desc = "Open REPL" })
+
+    vim.keymap.set("n", "<leader>ir", function()
+      iron.send(vim.bo.filetype, "")
+    end, { desc = "Restart REPL" })
+
+    vim.keymap.set("n", "<leader>il", function()
+      local line = vim.api.nvim_get_current_line()
+      require("iron.core").send(vim.bo.filetype, line) -- Direct send, no marks
+    end, { desc = "Send line to REPL" })
+
+    vim.keymap.set("v", "<leader>is", function()
+      require("iron.core").visual_send()
+    end, { desc = "Send visual selection to REPL" })
+
+    vim.keymap.set("n", "<leader>if", function()
+      require("iron.core").send_file()
+    end, { desc = "Send file to REPL" })
+
+    vim.keymap.set("n", "<leader>iu", function()
+      require("iron.core").send_until_cursor()
+    end, { desc = "Send until cursor to REPL" })
+
+    vim.keymap.set("n", "<leader>iq", function()
+      require("iron.core").close_repl()
+    end, { desc = "Close REPL" })
+
+    vim.keymap.set("n", "<leader>icl", function()
+      require("iron.core").send(vim.bo.filetype, "clear")
+    end, { desc = "Clear REPL" })
+
+    -- Interrupt REPL
+    vim.keymap.set("n", "<leader>ii", function()
+      require("iron.core").send(
+        vim.bo.filetype,
+        vim.api.nvim_replace_termcodes("<C-c>", true, false, true)
+      )
+    end, { desc = "Interrupt REPL" })
+  end,
+}

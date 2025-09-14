@@ -1,70 +1,49 @@
-return   {
-    "GCBallesteros/NotebookNavigator.nvim",
-    version = "*", -- Use latest stable version
-    dependencies = {
-      "echasnovski/mini.comment",
-      "Vigemus/iron.nvim",
-      "echasnovski/mini.hipatterns", -- For cell highlighting
-    },
-    config = function()
-      local nn = require("notebook-navigator")
+return {
+  "GCBallesteros/NotebookNavigator.nvim",
+  version = "*", -- Use latest stable version
+  dependencies = {
+    "echasnovski/mini.comment",
+    "Vigemus/iron.nvim",
+    "echasnovski/mini.hipatterns", -- For cell highlighting
+  },
+  ft = { "python", "ipynb", "markdown" },
+  config = function()
+    local nn = require("notebook-navigator")
+    nn.setup({
+      activate_hydra = false,
+      repl_provider = "iron",
+      cell_markers = {
+        python = "# %%",
+        markdown = "```python",
+      },
+      show_hydra_hint = false,
+      syntax_highlight = true,
+      cell_highlight_group = "Visual",
+    })
 
-      -- Basic NotebookNavigator setup
-      nn.setup({
-        -- No mappings here - all defined in which-key.lua
-        activate_mapping = "",
+    -- Enhanced cell navigation keymaps
+    vim.keymap.set("n", "<leader>jr", function()
+      nn.run_cell()
+    end, { desc = "Run cell" })
 
-        -- Cell markers define how cells are identified in different file types
-        cell_markers = {
-          -- Default Python marker
-          python = "```python",
-          -- For markdown: using the most common code block marker
-          markdown = "```",
-        },
+    vim.keymap.set("n", "<leader>jR", function()
+      nn.run_and_move()
+    end, { desc = "Run cell and move to next" })
 
-        -- Use syntax highlighting with mini.hipatterns for better cell visualization
-        syntax_highlight = true,
+    vim.keymap.set("n", "]j", function()
+      nn.move_cell("d")
+    end, { desc = "Next cell" })
 
-        -- Use mini.hipatterns to handle cell highlighting when available
-        use_hipatterns = true,
+    vim.keymap.set("n", "[j", function()
+      nn.move_cell("u")
+    end, { desc = "Previous cell" })
 
-        -- Highlight group for cell markers that integrates with our custom styling
-        cell_highlight_group = "JupyterCellSeparator",
+    vim.keymap.set("n", "<leader>jc", function()
+      nn.comment_cell()
+    end, { desc = "Comment cell" })
 
-        -- Use Iron.nvim as the REPL provider
-        repl_provider = "iron",
-
-        -- No mappings here - all defined in which-key.lua
-        mappings = {},
-      })
-
-      -- Load our autocommands module for FileType detection
-      vim.defer_fn(function()
-        local ok, autocommands = pcall(require, "drogalis.plugins.jupyter.styling.autocommands")
-        if ok and type(autocommands) == "table" and autocommands.setup then
-          autocommands.setup()
-        end
-      end, 50)
-
-      -- Only load styling for open ipynb files to avoid unnecessary processing
-      vim.defer_fn(function()
-        -- Check if any ipynb files are open
-        local any_ipynb = false
-        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-          local bufname = vim.api.nvim_buf_get_name(buf)
-          if bufname:match("%.ipynb$") then
-            any_ipynb = true
-            break
-          end
-        end
-
-        -- If we have open ipynb files, load and apply styling
-        if any_ipynb then
-          local ok, styling = pcall(require, "drogalis.plugins.jupyter.styling.styling")
-          if ok and type(styling) == "table" and styling.setup then
-            styling.setup()
-          end
-        end
-      end, 100)
-    end,
-  }
+    vim.keymap.set("n", "<leader>ja", function()
+      nn.run_all_cells()
+    end, { desc = "Run all cells" })
+  end,
+}
