@@ -11,14 +11,45 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "drogalis.plugins" }, { import = "drogalis.plugins.lsp" } }, {
+require("lazy").setup({
+  spec = {
+    -- Import plugin configurations
+    { import = "drogalis.plugins" },
+    { import = "drogalis.plugins.lsp" },
+   -- { import = "drogalis.plugins.jupyter" },
+  },
+
+  defaults = {
+    lazy = false,
+    version = false,
+    cond = nil,
+  },
+
+  install = {
+    missing = true,
+  },
+
+  diff = {
+    cmd = "git",
+  },
+
   checker = {
-    enabled = true,
-    notify = false,
+    enabled = true, -- Automatically check for plugin updates
+    notify = false, -- Get notification when updates are found
   },
+
   change_detection = {
-    notify = false,
+    enabled = true,
+    notify = false, -- Don't notify about config changes
   },
+
+  performance = {
+    cache = {
+      enabled = true,
+    },
+  },
+  -- Debugging options
+  debug = false,
 })
 
 
