@@ -27,13 +27,14 @@ return {
 						-- offsetEncoding = { "utf-16" },
 					},
 					cmd = {
-						"/usr/bin/clangd",
+						"clangd",
 						"--background-index",
 						"--clang-tidy",
 						"--header-insertion=iwyu",
 						"--completion-style=detailed",
 						"--function-arg-placeholders",
-						"--fallback-style=llvm",
+						"--fallback-style=google",
+						"--limit-results=50",
 					},
 					init_options = {
 						compilationDatabasePath = "./build",
