@@ -1,14 +1,31 @@
-local lazy_cmp_config = function()
-	local cmp = require("cmp")
-	local luasnip = require("luasnip")
-	local lspkind = require("lspkind")
-	cmp.setup({
-		snippet = {
-			expand = function(args)
-				luasnip.lsp_expand(args.body)
-			end,
-		},
-		mapping = {
+return {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path", 
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-nvim-lua",
+    },
+    event = "InsertEnter",
+    config = function()
+      local cmp = require("cmp")
+      
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            -- Use native snippet expansion in 0.11+
+            if vim.fn.has("nvim-0.11") == 1 then
+              vim.snippet.expand(args.body)
+            end
+          end,
+        },
+        
+        completion = {
+          completeopt = "menu,menuone,noinsert",
+          keyword_length = 1,
+        },
+        mapping = {
 			["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
 			["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
 			["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
@@ -19,92 +36,67 @@ local lazy_cmp_config = function()
 				c = cmp.mapping.close(),
 			}),
 		},
-		sources = cmp.config.sources({
-			{ name = "nvim_lsp" },
-			{ name = "nvim_lua" },
-			{ name = "vim_lsp" },
-			{ name = "luasnip" },
-		}, {
-			{ name = "path" },
-			{ name = "buffer", keyword_length = 4 },
-		}),
-		formatting = {
-			fields = { "abbr", "kind", "menu" },
-			format = lspkind.cmp_format({
-				mode = "symbol", -- show only symbol annotations
-				with_text = true,
-				menu = {
-					nvim_lsp = "[LSP]",
-					nvim_lua = "[NVLUA]",
-					luasnip = "[SNIP]",
-					path = "[Path]",
-					buffer = "[BUF]",
-				},
-				maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-			}),
-		},
-		view = {
-			entries = {
-				name = "custom",
-				selection_order = "near_cursor",
-			},
-		},
-	})
-
-	-- `/` cmdline setup.
-	cmp.setup.cmdline({ "/", "?" }, {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = {
-			{ name = "buffer" },
-		},
-	})
-
-	-- `:` cmdline setup.
-	cmp.setup.cmdline(":", {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = cmp.config.sources({
-			{ name = "path" },
-		}, {
-			{ name = "cmdline" },
-		}),
-	})
-end
-
-local M = {
-	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		config = lazy_cmp_config,
-		dependencies = {
-			{
-				"hrsh7th/cmp-nvim-lsp",
-			},
-			{
-				"hrsh7th/cmp-nvim-lua",
-			},
-			{
-				"hrsh7th/cmp-buffer",
-			},
-			{
-				"hrsh7th/cmp-path",
-			},
-			{
-				"hrsh7th/cmp-cmdline",
-			},
-			{
-				"hrsh7th/cmp-emoji",
-			},
-			{
-				"saadparwaiz1/cmp_luasnip",
-			},
-			{
-				"L3MON4D3/LuaSnip",
-			},
-			{
-				"onsails/lspkind-nvim",
-			},
-		},
-	},
-}
-
-return M
+  
+        sources = cmp.config.sources({
+          { name = "nvim_lsp", priority = 1000 },
+          { name = "nvim_lua", priority = 800 },
+          { name = "path", priority = 750 },
+        }, {
+          { name = "buffer", keyword_length = 3, priority = 500 },
+        }),
+        
+        formatting = {
+          format = lspkind.cmp_format({
+            mode = "symbol_text",
+            maxwidth = 50,
+            ellipsis_char = "...",
+            show_labelDetails = true,
+            before = function(entry, vim_item)
+              vim_item.menu = ({
+                nvim_lsp = "[LSP]",
+                nvim_lua = "[Lua]",
+                path = "[Path]",
+                buffer = "[Buffer]",
+              })[entry.source.name]
+              return vim_item
+            end,
+          }),
+        },
+        
+        experimental = {
+          ghost_text = {
+            hl_group = "CmpGhostText",
+          },
+        },
+        
+        window = {
+          completion = cmp.config.window.bordered({
+            border = "rounded",
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+          }),
+          documentation = cmp.config.window.bordered({
+            border = "rounded",
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+          }),
+        },
+      })
+      
+      -- Enhanced cmdline completion for 0.11+
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" }
+        }
+      })
+      
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" }
+        }, {
+          { name = "cmdline" }
+        }),
+        matching = { disallow_symbol_nonprefix_matching = false }
+      })
+    end,
+  }
