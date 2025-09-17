@@ -110,33 +110,49 @@ cmake = {
       buildDirectory = "build",
     },
   },
-      -- lua_ls = {
-      --   settings = {
-      --     Lua = {
-      --       runtime = {
-      --         version = "LuaJIT",
-      --       },
-      --       diagnostics = {
-      --         globals = { "vim" },
-      --       },
-      --       workspace = {
-      --         library = vim.api.nvim_get_runtime_file("", true),
-      --         checkThirdParty = false,
-      --       },
-      --       telemetry = {
-      --         enable = false,
-      --       },
-      --       format = {
-      --         enable = true,
-      --         defaultConfig = {
-      --           indent_style = "space",
-      --           indent_size = "2",
-      --         },
-      --       },
-      --     },
-      --   },
-      -- },
     },
+         starlark_rust = {
+        cmd = { "starlark_lsp" },
+        filetypes = { "starlark", "bzl", "bazel" },
+        root_dir = function(fname)
+          return require("lspconfig.util").root_pattern(
+            "WORKSPACE",
+            "WORKSPACE.bazel",
+            "MODULE.bazel",
+            ".git"
+          )(fname)
+        end,
+        single_file_support = true,
+        settings = {
+          starlark = {
+            -- Enable all diagnostics
+            diagnostics = {
+              enable = true,
+              unused_variable = "warning",
+              unused_load = "warning",
+              undefined_variable = "error",
+              redefined_builtin = "warning",
+            },
+            hover = {
+              enable = true,
+              show_documentation = true,
+            },
+            completion = {
+              enable = true,
+              enable_snippets = true,
+              auto_import = true,
+            },
+            workspace = {
+              scan_bzl_files = true,
+              max_files = 1000,
+            },
+            bazel = {
+              enable_bazel_builtins = true,
+              enable_build_file_support = true,
+            },
+          },
+        },
+      },
     setup = {
       clangd = function(_, opts)
         require("clangd_extensions").setup({
