@@ -20,11 +20,12 @@ return {
             end
           end,
         },
-        
-        completion = {
-          completeopt = "menu,menuone,noinsert",
-          keyword_length = 1,
-        },
+
+       
+       -- completion = {
+       --   completeopt = "menu,menuone,noinsert",
+       --   keyword_length = 1,
+       -- },
         mapping = {
 			["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
 			["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
@@ -45,29 +46,15 @@ return {
           { name = "buffer", keyword_length = 3, priority = 500 },
         }),
         
-        formatting = {
-          format = lspkind.cmp_format({
-            mode = "symbol_text",
-            maxwidth = 50,
-            ellipsis_char = "...",
-            show_labelDetails = true,
-            before = function(entry, vim_item)
-              vim_item.menu = ({
-                nvim_lsp = "[LSP]",
-                nvim_lua = "[Lua]",
-                path = "[Path]",
-                buffer = "[Buffer]",
-              })[entry.source.name]
-              return vim_item
-            end,
-          }),
-        },
-        
-        experimental = {
-          ghost_text = {
-            hl_group = "CmpGhostText",
-          },
-        },
+    formatting = {
+      fields = { "abbr", "kind", "menu" },
+    },
+    view = {
+      entries = {
+        name = "custom",
+        selection_order = "near_cursor",
+      },
+    },
         
         window = {
           completion = cmp.config.window.bordered({
