@@ -17,7 +17,7 @@ return {
         -- Language servers (additional to mason-lspconfig)
         "pyright",
         "clangd",
-        "neocmakelsp"
+       -- "neocmakelsp"
        -- "buildifier"
        -- "starlark-rust"
        -- "bash-language-server",
