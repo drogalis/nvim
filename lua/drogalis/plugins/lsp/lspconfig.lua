@@ -33,7 +33,7 @@ return {
             "--header-insertion=iwyu",
             "--completion-style=detailed",
             "--function-arg-placeholders",
-            "--fallback-style=goolge",
+            "--fallback-style=google",
             "--enable-config",
             "--limit-results=50",
           },
@@ -82,14 +82,14 @@ return {
         },
       },
       bashls = {},
-      cmake = {
-        cmd = { "cmake-language-server" },
+       cmake = {
+        cmd = { "neocmakelsp" },
         filetypes = { "cmake", "CMakeLists.txt" },
         init_options = {
           buildDirectory = "build",
         },
-        single_file_support = true,
-      },
+       single_file_support = true,
+       },
       -- lua_ls = {
       --   settings = {
       --     Lua = {

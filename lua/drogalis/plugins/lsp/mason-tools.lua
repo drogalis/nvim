@@ -17,6 +17,7 @@ return {
         -- Language servers (additional to mason-lspconfig)
         "pyright",
         "clangd",
+        "neocmakelsp"
        -- "bash-language-server",
       },
       auto_update = true,
