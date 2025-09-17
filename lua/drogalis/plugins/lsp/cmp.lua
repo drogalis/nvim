@@ -21,11 +21,6 @@ return {
           end,
         },
 
-       
-       -- completion = {
-       --   completeopt = "menu,menuone,noinsert",
-       --   keyword_length = 1,
-       -- },
         mapping = {
 			["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
 			["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
@@ -58,11 +53,11 @@ return {
         
         window = {
           completion = cmp.config.window.bordered({
-            border = "rounded",
+            border = "single",
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
           }),
           documentation = cmp.config.window.bordered({
-            border = "rounded",
+            border = "single",
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
           }),
         },
