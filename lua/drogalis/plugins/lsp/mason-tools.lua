@@ -18,6 +18,8 @@ return {
         "pyright",
         "clangd",
         "neocmakelsp"
+       -- "buildifier"
+       -- "starlark-rust"
        -- "bash-language-server",
       },
       auto_update = true,
