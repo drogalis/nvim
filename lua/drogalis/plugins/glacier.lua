@@ -1,5 +1,5 @@
 return {
-    "drogalis/glacialdrift.nvim",
+    "drogalis/glacier.nvim",
     lazy = false,
           priority = 1000,
     config = function()
