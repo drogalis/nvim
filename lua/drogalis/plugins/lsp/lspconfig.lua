@@ -82,14 +82,34 @@ return {
         },
       },
       bashls = {},
-       cmake = {
-        cmd = { "neocmakelsp" },
-        filetypes = { "cmake", "CMakeLists.txt" },
-        init_options = {
-          buildDirectory = "build",
-        },
-       single_file_support = true,
-       },
+cmake = {
+  cmd = { "neocmakelsp", "--stdio" },
+  filetypes = { "cmake" },
+  root_dir = function(fname)
+    return require("lspconfig.util").root_pattern(
+      "CMakePresets.json",
+      "CTestConfig.cmake",
+      ".git",
+      "build",
+      "cmake"
+    )(fname)
+  end,
+  single_file_support = true,
+  init_options = {
+    format = {
+      enable = true,
+    },
+    lint = {
+      enable = true,
+    },
+    scan_cmake_in_package = true, 
+    semantic_token = true, 
+  },
+  settings = {
+    cmake = {
+      buildDirectory = "build",
+    },
+  },
       -- lua_ls = {
       --   settings = {
       --     Lua = {
